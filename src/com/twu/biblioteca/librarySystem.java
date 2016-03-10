@@ -26,6 +26,12 @@ public class librarySystem {
         map.put("author", "Allan");
         map.put("publishDate", "2011-2-4");
         list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("bookName", "Code");
+        map.put("author", "arch");
+        map.put("publishDate", "2001-2-4");
+        list.add(map);
         return list;
     }
 
@@ -44,11 +50,50 @@ public class librarySystem {
         System.out.println("the count of books is:" + bookList.size());
         Iterator<HashMap<String, Object>> it = bookList.iterator();
         String bookInfo = "";
+//        int i = 1;
         while(it.hasNext()) {
             Map<String, Object> book = it.next();
             bookInfo =bookInfo + book.get("bookName") + "\t" + book.get("author") + "\t" + book.get("publishDate") + "\n";
         }
 
         return bookInfo;
+    }
+
+    public String showMenu() {
+        String menu = "";
+        menu = menu + "[1]" + "\t" + "listBooks\n"
+                +"[2]" + "\t" + "quit\n";
+        return menu;
+    }
+
+    public boolean checkOut(int i, ArrayList books, ArrayList checkoutLists) {
+        if(i > 0 && i <= books.size() ) {
+            Object checkout = books.remove(i - 1);
+            checkoutLists.add(checkout);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnBook(Object book, ArrayList books, ArrayList checkoutLists) throws Exception {
+        int size = checkoutLists.size();
+
+            return true;
+    }
+    public String getCheckOut(Boolean isSuccess) {
+        String checkOutInfo = "";
+        if(isSuccess) {
+            checkOutInfo = "Thank you! Enjoy the book”";
+        }
+        else checkOutInfo = "That book is not available";
+        return checkOutInfo;
+    }
+    public String getReturnInfo(Boolean isSuccess) {
+        String returnInfo = "";
+        if(isSuccess) {
+            returnInfo = "Thank you for returning the book.";
+        }
+        else returnInfo = "That is not a valid book to return.";
+        return returnInfo;
     }
 }

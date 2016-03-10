@@ -53,4 +53,30 @@ public class librarySystemTest {
 
         assertEquals("TDD Methods\tTom\t2013-2-4\n" + "Code Refactoring Methods\tAllan\t2011-2-4\n", bookLists);
     }
+
+    @Test
+    public void should_return_two_options_when_showmenu_be_called() throws Exception {
+        String menuOptions = new librarySystem().showMenu();
+
+        assertEquals("[1]\tlistBooks\n" + "[2]\tquit\n", menuOptions);
+    }
+    @Test
+    public void should_return_the_checkout_success_when_checkout_be_called_and_the_number_is_1() throws Exception {
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("bookName", "TDD Methods");
+        map.put("author", "Tom");
+        map.put("publishDate", "2013-2-4");
+        list.add(map);
+        map = new HashMap<String, Object>();
+        map.put("bookName", "Code Refactoring Methods");
+        map.put("author", "Allan");
+        map.put("publishDate", "2011-2-4");
+        list.add(map);
+        ArrayList checkoutLists = new ArrayList();
+        boolean isCheckout =new librarySystem().checkOut(1, list, checkoutLists);
+        assertEquals(isCheckout, true);
+    }
+
+
 }
